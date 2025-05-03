@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TCASharpTests (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TCASharpTests (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
