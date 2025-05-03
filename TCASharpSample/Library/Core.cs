@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace TCASharpSample.Library;
 
-internal class Store<Value>
+internal partial class Store<V>: ObservableObject
 {
-    Value value { get; set; }
+    [ObservableProperty]
+    V value;
 
-    internal Store(Value initialValue)
+    internal Store(V initialValue)
     {
         this.value = value;
     }
