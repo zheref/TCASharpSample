@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace TCASharpSample.Implementation;
 
+
+
 abstract record PrimeModalAction;
 internal record SaveFavoritePrimeTapped : PrimeModalAction;
 internal record RemoveFavoritePrimeTapped : PrimeModalAction;

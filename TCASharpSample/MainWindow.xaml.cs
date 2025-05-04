@@ -53,4 +53,18 @@ public sealed partial class MainWindow : Window
     {
         store.Dispatch(new AppAction.Counter(new IncrementTapped()));
     }
+
+    private void savePrime_Click(object sender, RoutedEventArgs e)
+    {
+        store.Dispatch(new AppAction.PrimeModal(
+            new SaveFavoritePrimeTapped()
+        ));
+    }
+
+    private void removePrime_Click(object sender, RoutedEventArgs e)
+    {
+        store.Dispatch(new AppAction.PrimeModal(
+            new RemoveFavoritePrimeTapped()
+        ));
+    }
 }
