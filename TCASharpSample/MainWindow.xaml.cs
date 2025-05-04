@@ -46,11 +46,11 @@ public sealed partial class MainWindow : Window
 
     private void decrementButton_Click(object sender, RoutedEventArgs e)
     {
-        store.Dispatch(new DecrementTapped());
+        store.Dispatch(new AppAction.Counter(new DecrementTapped()));
     }
 
     private void incrementButton_Click(object sender, RoutedEventArgs e)
     {
-        store.Dispatch(new IncrementTapped());
+        store.Dispatch(new AppAction.Counter(new IncrementTapped()));
     }
 }
