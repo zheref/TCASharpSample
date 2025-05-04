@@ -31,7 +31,7 @@ namespace TCASharpSample
             this.InitializeComponent();
 
             AppState initialState = new();
-            mainPage.DataContext = new Store<AppState, AppAction>(
+            mainPage.DataContext = new ComposableStore<AppState, AppAction>(
                 initialState,
                 AppReducer.Body
             );

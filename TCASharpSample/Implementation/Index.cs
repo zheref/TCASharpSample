@@ -18,19 +18,19 @@ abstract record AppAction;
 record DecrementTapped: AppAction;
 record IncrementTapped : AppAction;
 
-// Alias
-delegate AppState Reducer(AppState state, AppAction action);
-
 // Actual Reducer
 static class AppReducer
 {
-    internal static Store<AppState, AppAction>.Reducer Body => (state, action) =>
-    action switch
+    internal static ComposableStore<AppState, AppAction>.Reducer Body => (ref AppState state, AppAction action) =>
     {
-        IncrementTapped => state with {
-            Count = state.Count + 1
-        },
-        DecrementTapped => state with { Count = state.Count - 1 },
-        _ => state
+        switch (action)
+        {
+            case IncrementTapped:
+                state.Count++;
+                break;
+            case DecrementTapped:
+                state.Count--;
+                break;
+        }
     };
 }

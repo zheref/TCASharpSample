@@ -9,16 +9,16 @@ using Windows.Media.Devices;
 
 namespace TCASharpSample.Library;
 
-public partial class Store<V, Action>: ObservableObject
+public partial class ComposableStore<V, Action>: ObservableObject
 {
-    public delegate V Reducer(V state, Action action);
+    public delegate void Reducer(ref V state, Action action);
 
     Reducer reducer;
 
     [ObservableProperty]
     V value;
 
-    public Store(V initialValue, Reducer reducer)
+    public ComposableStore(V initialValue, Reducer reducer)
     {
         this.value = value;
         this.reducer = reducer;
@@ -26,6 +26,6 @@ public partial class Store<V, Action>: ObservableObject
 
     public void Send(Action action)
     {
-        value = reducer(value, action);
+        reducer(ref value, action);
     }
 }
