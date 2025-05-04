@@ -25,7 +25,7 @@ public class ReduxStoreTests
                 DecrementTapped _ => state with { Count = state.Count - 1 },
                 AddTapped => state with
                 {
-                    Numbers = new ObservableCollection<int>(state.Numbers.Concat(new[] { state.Count }))
+                    Numbers = [..state.Numbers, state.Count]
                 },
                 _ => state
             }
@@ -44,8 +44,9 @@ public class ReduxStoreTests
         Assert.AreEqual(2, store.Value.Count);
 
         store.Dispatch(new AddTapped());
-        Assert.AreEqual(1, store.Value.Numbers.Count);
-        Assert.AreEqual([2], store.Value.Numbers);
+        Assert.AreEqual(1, store.Value.Numbers.Length);
+        //Assert.AreSame([2], store.Value.Numbers);
+        Assert.AreEqual(2, store.Value.Numbers[0]);
 
         store.Dispatch(new DecrementTapped());
         Assert.AreEqual(1, store.Value.Count);

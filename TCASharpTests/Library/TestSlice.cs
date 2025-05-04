@@ -6,7 +6,7 @@ namespace TCASharpTests;
 internal record TestState
 {
     public int Count { get; set; } = 0;
-    public ObservableCollection<int> Numbers { get; set; } = new ObservableCollection<int>();
+    public int[] Numbers { get; set; } = [];
     public TestState() { }
 }
 

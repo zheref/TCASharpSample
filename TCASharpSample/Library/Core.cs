@@ -20,7 +20,7 @@ public partial class ComposableStore<V, Action>: ObservableObject
 
     public ComposableStore(V initialValue, Reducer reducer)
     {
-        this.value = value;
+        this.value = initialValue;
         this.reducer = reducer;
     }
 
@@ -42,7 +42,7 @@ public partial class ReduxStore<V, Action>: ObservableObject
 
     public ReduxStore(V initialValue, Reducer reducer)
     {
-        this.Value = value;
+        this.Value = initialValue;
         this.reducer = reducer;
     }
 
