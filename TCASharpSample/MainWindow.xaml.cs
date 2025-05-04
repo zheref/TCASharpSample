@@ -10,8 +10,11 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using TCASharpSample.Implementation;
+using TCASharpSample.Library;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.DialProtocol;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,6 +29,12 @@ namespace TCASharpSample
         public MainWindow()
         {
             this.InitializeComponent();
+
+            AppState initialState = new();
+            mainPage.DataContext = new Store<AppState, AppAction>(
+                initialState,
+                AppReducer.Body
+            );
         }
 
         private void myButton_Click(object sender, RoutedEventArgs e)
