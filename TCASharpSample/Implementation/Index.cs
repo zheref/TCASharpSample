@@ -22,17 +22,12 @@ namespace TCASharpSample.Implementation
     // Actual Reducer
     static class AppReducer
     {
-        internal static ComposableStore<AppState, AppAction>.Reducer Body => (ref AppState state, AppAction action) =>
+        internal static ReduxStore<AppState, AppAction>.Reducer Body => (AppState state, AppAction action) =>
+        action switch
         {
-            switch (action)
-            {
-                case IncrementTapped:
-                    state.Count++;
-                    break;
-                case DecrementTapped:
-                    state.Count--;
-                    break;
-            }
+            IncrementTapped _ => state with { Count = state.Count + 1 },
+            DecrementTapped _ => state with { Count = state.Count - 1 },
+            _ => state
         };
     }
 }

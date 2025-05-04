@@ -25,12 +25,18 @@ public class ReduxStoreTests
     }
 
     [TestMethod]
-    public void TestIncrement()
+    public void TestDispatch()
     {
         if (store == null) return;
         Assert.AreEqual(0, store.Value.Count);
         store.Dispatch(new IncrementTapped());
         Assert.AreEqual(1, store.Value.Count);
+        store.Dispatch(new IncrementTapped());
+        Assert.AreEqual(2, store.Value.Count);
+        store.Dispatch(new DecrementTapped());
+        Assert.AreEqual(1, store.Value.Count);
+        store.Dispatch(new DecrementTapped());
+        Assert.AreEqual(0, store.Value.Count);
     }
 
     [TestCleanup]

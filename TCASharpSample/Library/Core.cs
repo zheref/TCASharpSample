@@ -27,6 +27,7 @@ public partial class ComposableStore<V, Action>: ObservableObject
     public void Send(Action action)
     {
         reducer(ref value, action);
+        OnPropertyChanged(nameof(Value));
     }
 }
 

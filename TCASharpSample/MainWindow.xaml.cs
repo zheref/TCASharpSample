@@ -21,7 +21,7 @@ using Windows.Media.DialProtocol;
 
 namespace TCASharpSample;
 
-using AppStore = ComposableStore<AppState, AppAction>;
+using AppStore = ReduxStore<AppState, AppAction>;
 
 /// <summary>
 /// An empty window that can be used on its own or navigated to within a Frame.
@@ -36,7 +36,7 @@ public sealed partial class MainWindow : Window
 
         AppState initialState = new();
 
-        this.store = new ComposableStore<AppState, AppAction>(
+        this.store = new ReduxStore<AppState, AppAction>(
             initialState,
             AppReducer.Body
         );
@@ -46,11 +46,11 @@ public sealed partial class MainWindow : Window
 
     private void decrementButton_Click(object sender, RoutedEventArgs e)
     {
-        store.Send(new DecrementTapped());
+        store.Dispatch(new DecrementTapped());
     }
 
     private void incrementButton_Click(object sender, RoutedEventArgs e)
     {
-        store.Send(new IncrementTapped());
+        store.Dispatch(new IncrementTapped());
     }
 }

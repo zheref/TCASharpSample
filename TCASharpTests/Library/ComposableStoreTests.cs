@@ -30,12 +30,18 @@ public class ComposableStoreTests
     }
 
     [TestMethod]
-    public void TestIncrement()
+    public void TestSend()
     {
         if (store == null) return;
         Assert.AreEqual(0, store.Value.Count);
         store.Send(new IncrementTapped());
         Assert.AreEqual(1, store.Value.Count);
+        store.Send(new IncrementTapped());
+        Assert.AreEqual(2, store.Value.Count);
+        store.Send(new DecrementTapped());
+        Assert.AreEqual(1, store.Value.Count);
+        store.Send(new DecrementTapped());
+        Assert.AreEqual(0, store.Value.Count);
     }
 
     [TestCleanup]
