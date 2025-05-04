@@ -37,9 +37,14 @@ namespace TCASharpSample
             );
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private void decrementButton_Click(object sender, RoutedEventArgs e)
         {
-            myButton.Content = "Clicked";
+            
+        }
+
+        private void incrementButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
