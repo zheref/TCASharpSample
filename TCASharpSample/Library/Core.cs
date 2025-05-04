@@ -29,3 +29,24 @@ public partial class ComposableStore<V, Action>: ObservableObject
         reducer(ref value, action);
     }
 }
+
+public partial class ReduxStore<V, Action>: ObservableObject
+{
+    public delegate V Reducer(V state, Action action);
+
+    Reducer reducer;
+
+    [ObservableProperty]
+    public V value;
+
+    public ReduxStore(V initialValue, Reducer reducer)
+    {
+        this.Value = value;
+        this.reducer = reducer;
+    }
+
+    public void Dispatch(Action action)
+    {
+        Value = reducer(Value, action);
+    }
+}

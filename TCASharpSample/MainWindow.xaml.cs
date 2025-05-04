@@ -19,32 +19,38 @@ using Windows.Media.DialProtocol;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace TCASharpSample
+namespace TCASharpSample;
+
+using AppStore = ComposableStore<AppState, AppAction>;
+
+/// <summary>
+/// An empty window that can be used on its own or navigated to within a Frame.
+/// </summary>
+public sealed partial class MainWindow : Window
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainWindow : Window
+    AppStore store;
+
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            this.InitializeComponent();
+        this.InitializeComponent();
 
-            AppState initialState = new();
-            mainPage.DataContext = new ComposableStore<AppState, AppAction>(
-                initialState,
-                AppReducer.Body
-            );
-        }
+        AppState initialState = new();
 
-        private void decrementButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        this.store = new ComposableStore<AppState, AppAction>(
+            initialState,
+            AppReducer.Body
+        );
 
-        private void incrementButton_Click(object sender, RoutedEventArgs e)
-        {
+        mainPage.DataContext = this.store;
+    }
 
-        }
+    private void decrementButton_Click(object sender, RoutedEventArgs e)
+    {
+        store.Send(new DecrementTapped());
+    }
+
+    private void incrementButton_Click(object sender, RoutedEventArgs e)
+    {
+        store.Send(new IncrementTapped());
     }
 }

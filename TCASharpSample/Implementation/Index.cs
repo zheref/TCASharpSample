@@ -6,31 +6,33 @@ using System.Threading;
 using System.Threading.Tasks;
 using TCASharpSample.Library;
 
-namespace TCASharpSample.Implementation;
-struct AppState
+namespace TCASharpSample.Implementation
 {
-    public int Count { get; set; } = 0;
-
-    public AppState() { }
-}
-
-abstract record AppAction;
-record DecrementTapped: AppAction;
-record IncrementTapped : AppAction;
-
-// Actual Reducer
-static class AppReducer
-{
-    internal static ComposableStore<AppState, AppAction>.Reducer Body => (ref AppState state, AppAction action) =>
+    struct AppState
     {
-        switch (action)
+        public int Count { get; set; } = 0;
+
+        public AppState() { }
+    }
+
+    abstract record AppAction;
+    internal record DecrementTapped : AppAction;
+    internal record IncrementTapped : AppAction;
+
+    // Actual Reducer
+    static class AppReducer
+    {
+        internal static ComposableStore<AppState, AppAction>.Reducer Body => (ref AppState state, AppAction action) =>
         {
-            case IncrementTapped:
-                state.Count++;
-                break;
-            case DecrementTapped:
-                state.Count--;
-                break;
-        }
-    };
+            switch (action)
+            {
+                case IncrementTapped:
+                    state.Count++;
+                    break;
+                case DecrementTapped:
+                    state.Count--;
+                    break;
+            }
+        };
+    }
 }
