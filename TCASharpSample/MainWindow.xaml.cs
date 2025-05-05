@@ -67,4 +67,18 @@ public sealed partial class MainWindow : Window
             new RemoveFavoritePrimeTapped()
         ));
     }
+
+    private void primeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (sender is ListView listView)
+        {
+            //var selectedItems = listView.SelectedItems;
+            //var indexes = new List<int>();
+            //foreach (var item in selectedItems)
+            //{
+            //    indexes.Add(listView.Items.IndexOf(item));
+            //}
+            //store.Dispatch(new AppAction.FavoritePrimes(new DeleteFavoritePrimes(indexes)));
+        }
+    }
 }

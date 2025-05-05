@@ -10,12 +10,9 @@ namespace TCASharpSample.Implementation
     {
         public int Count { get; set; } = 0;
 
-        public List<int> FavoritePrimes { get; set; }
+        public List<int> FavoritePrimes { get; set; } = [1, 2, 3];
 
-        public AppState() {
-            Count = 0;
-            FavoritePrimes = [1];
-        }
+        public AppState() { }
     }
 
     abstract record AppAction

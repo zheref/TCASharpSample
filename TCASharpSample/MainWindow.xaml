@@ -10,16 +10,33 @@
     Title="TCASharpSample">
 
     <Page x:Name="mainPage">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="decrementButton" Click="decrementButton_Click">-</Button>
-                <TextBlock x:Name="myTextBlock" Text="{Binding Value.Count}" FontSize="24" Margin="10"/>
-                <Button x:Name="incrementButton" Click="incrementButton_Click">+</Button>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Click="savePrime_Click">Save</Button>
-                <Button Click="removePrime_Click">Remove</Button>
-            </StackPanel>
-        </StackPanel>
+        <NavigationView x:Name="navigationView" IsPaneOpen="False">
+            <ScrollViewer>
+                <Frame x:Name="contentFrame">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button x:Name="decrementButton" Click="decrementButton_Click">-</Button>
+                            <TextBlock x:Name="myTextBlock" Text="{Binding Value.Count}" FontSize="24" Margin="10"/>
+                            <Button x:Name="incrementButton" Click="incrementButton_Click">+</Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button Click="savePrime_Click">Save</Button>
+                            <Button Click="removePrime_Click">Remove</Button>
+                        </StackPanel>
+                        <TextBlock FontSize="32">My Favorites</TextBlock>
+                        <ListView x:Name="primeListView" 
+                                  SelectionMode="Single" 
+                                  SelectionChanged="primeListView_SelectionChanged"
+                                  ItemsSource="{Binding Value.FavoritePrimes}" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" FontSize="18" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </Frame>
+            </ScrollViewer>
+        </NavigationView>
     </Page>
 </Window>
