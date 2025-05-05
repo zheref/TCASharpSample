@@ -19,15 +19,17 @@
                             <TextBlock x:Name="myTextBlock" Text="{Binding Value.Count}" FontSize="24" Margin="10"/>
                             <Button x:Name="incrementButton" Click="incrementButton_Click">+</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
                             <Button Click="savePrime_Click">Save</Button>
                             <Button Click="removePrime_Click">Remove</Button>
+                            <Button Click="clearFavorites_Click">Clear Favorites</Button>
                         </StackPanel>
                         <TextBlock FontSize="32">My Favorites</TextBlock>
                         <ListView x:Name="primeListView" 
-                                  SelectionMode="Single" 
+                                  SelectionMode="Multiple" 
                                   SelectionChanged="primeListView_SelectionChanged"
-                                  ItemsSource="{Binding Value.FavoritePrimes}" >
+                                  ItemsSource="{Binding Value.FavoritePrimes}" 
+                                  IsMultiSelectCheckBoxEnabled="True" >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}" FontSize="18" />

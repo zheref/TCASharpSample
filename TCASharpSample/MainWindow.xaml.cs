@@ -81,4 +81,22 @@ public sealed partial class MainWindow : Window
             //store.Dispatch(new AppAction.FavoritePrimes(new DeleteFavoritePrimes(indexes)));
         }
     }
+
+    private void clearFavorites_Click(object sender, RoutedEventArgs e)
+    {
+        var selectedItems = primeListView.SelectedRanges;
+        var indexes = new HashSet<int>();
+        foreach (var range in selectedItems)
+        {
+            for (int i = range.FirstIndex; i <= range.LastIndex; i++)
+            {
+                indexes.Add(i);
+            }
+        }
+        store.Dispatch(new AppAction.FavoritePrimes(
+            new DeleteFavoritePrimes(
+                indexes
+            )
+        ));
+    }
 }
