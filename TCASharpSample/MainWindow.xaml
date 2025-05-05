@@ -13,18 +13,17 @@
         <NavigationView x:Name="navigationView" IsPaneOpen="False">
             <ScrollViewer>
                 <Frame x:Name="contentFrame">
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="13">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Button x:Name="decrementButton" Click="decrementButton_Click">-</Button>
-                            <TextBlock x:Name="myTextBlock" Text="{Binding Value.Count}" FontSize="24" Margin="10"/>
+                            <TextBlock x:Name="myTextBlock" Text="{Binding Value.Count}" FontSize="32" Margin="10"/>
                             <Button x:Name="incrementButton" Click="incrementButton_Click">+</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="7">
                             <Button Click="savePrime_Click">Save</Button>
                             <Button Click="removePrime_Click">Remove</Button>
-                            <Button Click="clearFavorites_Click">Clear Favorites</Button>
                         </StackPanel>
-                        <TextBlock FontSize="32">My Favorites</TextBlock>
+                        <TextBlock FontSize="24">My Favorites</TextBlock>
                         <ListView x:Name="primeListView" 
                                   SelectionMode="Multiple" 
                                   SelectionChanged="primeListView_SelectionChanged"
@@ -32,10 +31,13 @@
                                   IsMultiSelectCheckBoxEnabled="True" >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding}" FontSize="18" />
+                                    <TextBlock Text="{Binding}" FontSize="16" />
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="7">
+                            <Button Click="clearFavorites_Click">Delete Selected</Button>
+                        </StackPanel>
                     </StackPanel>
                 </Frame>
             </ScrollViewer>

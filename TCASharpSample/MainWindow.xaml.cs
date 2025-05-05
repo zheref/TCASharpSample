@@ -87,16 +87,10 @@ public sealed partial class MainWindow : Window
         var selectedItems = primeListView.SelectedRanges;
         var indexes = new HashSet<int>();
         foreach (var range in selectedItems)
-        {
-            for (int i = range.FirstIndex; i <= range.LastIndex; i++)
-            {
+            for (int i = range.FirstIndex; i <= range.LastIndex; i++) 
                 indexes.Add(i);
-            }
-        }
         store.Dispatch(new AppAction.FavoritePrimes(
-            new DeleteFavoritePrimes(
-                indexes
-            )
+            new DeleteFavoritePrimes(indexes)
         ));
     }
 }
