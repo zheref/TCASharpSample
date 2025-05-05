@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TCASharpSample.Library;
+using static TCASharpSample.CollectionHelpers;
 
 namespace TCASharpSample.Implementation
 {
@@ -25,6 +22,7 @@ namespace TCASharpSample.Implementation
     {
         internal record Counter(CounterAction action) : AppAction;
         internal record PrimeModal(PrimeModalAction action) : AppAction;
+        internal record FavoritePrimes(FavoritePrimesAction action) : AppAction;
     }       
     
 
@@ -41,6 +39,10 @@ namespace TCASharpSample.Implementation
                 },
                 AppAction.PrimeModal(RemoveFavoritePrimeTapped) => state with {
                     FavoritePrimes = new(state.FavoritePrimes.Where((n) => n != state.Count).ToList())
+                },
+                AppAction.FavoritePrimes(DeleteFavoritePrimes a) => state with
+                {
+                    FavoritePrimes = state.FavoritePrimes.RemovingIndexes(a.indexes)
                 },
                 _ => state
             };
